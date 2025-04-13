@@ -51,25 +51,31 @@ class StaticArray {
     deleteItem(item) {
         let flag = false
         for (let i = 0; i < this.length; i++){
-            const temp = this.data[i]
-            if (temp === item) {
-                delete this.data[i]
+            if (this.data[i] === item) {
+                this.shiftItemByIndex(i)
                 flag = true
-                return
+                break
             }
         }
         if (!flag) {
-            console.log(item, ' is not found')
+            console.log('Item not found!')
+            return item
         }
     }
     deleteItemByIndex(idx) {
-        const item = this.data[idx]
-        if (!item) {
-            console.log(idx, ' is not available')
-            return idx
+        if (idx < 0 || idx >= this.length) {
+            console.log('Index is out of range!')
+            return
         }
+        this.shiftItemByIndex(idx)
+    }
+    shiftItemByIndex(idx) {
         delete this.data[idx]
-        return idx
+        for (let i = idx; i < this.length - 1; i++){
+            this.data[i] = this.data[i+1]
+        }
+        delete this.data[this.length-1]
+        this.length--
     }
     get() {
         console.log(this)
@@ -78,12 +84,12 @@ class StaticArray {
 const arr = new StaticArray()
 arr.append(10)
 arr.append(20)
-arr.shift()
+// arr.shift()
 arr.append(30)
 // arr.append(40)
 // arr.append(50)
-arr.pop()
-arr.unshift(1001)
-arr.deleteItemByIndex(2)
+// arr.pop()
+// arr.unshift(1001)
+// arr.deleteItemByIndex(0)
 arr.deleteItem(20)
 arr.get()
