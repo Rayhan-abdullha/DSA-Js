@@ -5,11 +5,11 @@ class StaticArray {
         this.length = 0;
         this.data = {};
     }
-    append(item) {
+    push(item) {
         this.data[this.length] = item
         this.length++
         return this.length
-    }
+    } // O(1)
     pop() {
         if (!this.length) {
             console.log('Array is empty!')
@@ -19,7 +19,7 @@ class StaticArray {
         delete this.data[this.length-1]
         this.length--
         return lastItem
-    } // o(1)
+    }// O(1)
     shift() {
         const firstItem = this.data['0']
         for (let i = 0; i < this.length; i++){
@@ -29,7 +29,7 @@ class StaticArray {
         delete this.data[this.length - 1]
         this.length--
         return firstItem
-    }// o(1)
+    }// O(1)
     unshift(item) {
         if (!item) {
             console.log('item is required!')
@@ -47,7 +47,7 @@ class StaticArray {
         this.length++
         this.data['0'] = item
         return item
-    }
+    } // O(n)
     deleteItem(item) {
         let flag = false
         for (let i = 0; i < this.length; i++){
@@ -61,14 +61,14 @@ class StaticArray {
             console.log('Item not found!')
             return item
         }
-    }
+    } // O(n)
     deleteItemByIndex(idx) {
         if (idx < 0 || idx >= this.length) {
             console.log('Index is out of range!')
             return
         }
         this.shiftItemByIndex(idx)
-    }
+    } // O(n)
     shiftItemByIndex(idx) {
         delete this.data[idx]
         for (let i = idx; i < this.length - 1; i++){
@@ -76,20 +76,30 @@ class StaticArray {
         }
         delete this.data[this.length-1]
         this.length--
-    }
+    } // O(n)
     get() {
         console.log(this)
+    } // O(1)
+    print() {
+        if (this.length === 0) {
+            console.log('Array is empty!')
+            return
+        }
+        for (let i = 0; i < this.length; i++){
+            console.log(this.data[i])
+        }
     }
 }
 const arr = new StaticArray()
-arr.append(10)
-arr.append(20)
+// arr.push(10)
+// arr.push(20)
 // arr.shift()
-arr.append(30)
-// arr.append(40)
-// arr.append(50)
+// arr.push(30)
+// arr.push(40)
+// arr.push(50)
 // arr.pop()
 // arr.unshift(1001)
 // arr.deleteItemByIndex(0)
-arr.deleteItem(20)
+// arr.deleteItem(20)
+arr.print()
 arr.get()
