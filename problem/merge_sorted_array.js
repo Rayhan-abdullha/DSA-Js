@@ -1,7 +1,7 @@
 // Merge two Sorted Array in one Sorted Array
 
-const arr = [1, 2, 4, 4, 50]
-const arr1 = [4, 5, 6]
+const arr = [10, 20, 40, 40, 50]
+const arr1 = [11, 11, 16]
 
 /**
  * 
