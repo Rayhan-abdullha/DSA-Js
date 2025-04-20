@@ -20,9 +20,7 @@ function removeDuplicates1(arr) {
     for (const val of arr) {
         removeDub.set(val, val)
     }
-    const unique = []
-    removeDub.forEach(v => unique.push(v))
-    return unique
+    return Array.from(removeDub.keys())
 }
 // console.log(removeDuplicates1(arr))
 console.log(removeDuplicates1(arr2))

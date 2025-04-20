@@ -1,9 +1,20 @@
-const myMap = new Map()
-
-myMap.set(1, 113)
-myMap.set(12, 12)
-myMap.set(11, 11)
-myMap.set(13, 10)
-const myMap1 = myMap.entries()
-const a = myMap1.next().value
-console.log(a[0], a[1])
+var areOccurrencesEqual = function (s) {
+    let obj = {}
+    for (let i = 0; i < s.length; i++){
+        obj[s[i]] = obj[s[i]] ? obj[s[i]] + 1 : 1
+    }
+    let res = false
+    let isSame = null
+    for (let key in obj) {
+        if (isSame == null) {
+            isSame = obj[key]
+        } else if (isSame !== obj[key]) {
+            res = false
+            return res
+        } else {
+            res = true
+        }
+    }
+    return true
+};
+console.log(areOccurrencesEqual('aabb'))
