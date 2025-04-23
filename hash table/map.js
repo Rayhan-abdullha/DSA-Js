@@ -1,20 +1,17 @@
-var areOccurrencesEqual = function (s) {
-    let obj = {}
-    for (let i = 0; i < s.length; i++){
-        obj[s[i]] = obj[s[i]] ? obj[s[i]] + 1 : 1
+
+
+var findDuplicates = function(arr) {
+    const occur = {}
+    for (let element of arr){
+        occur[element] = (occur[element] || 0) + 1
     }
-    let res = false
-    let isSame = null
-    for (let key in obj) {
-        if (isSame == null) {
-            isSame = obj[key]
-        } else if (isSame !== obj[key]) {
-            res = false
-            return res
-        } else {
-            res = true
-        }
+    const occurrences = [...Object.values(occur)]
+    const isOccur = new Set(occurrences)
+    if (occurrences.length !== isOccur.size){
+        return false
+    } else {
+        return true
     }
-    return true
 };
-console.log(areOccurrencesEqual('aabb'))
+const nums = [1,2,2,1,1,3]
+console.log(findDuplicates(nums))
